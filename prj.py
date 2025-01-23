@@ -135,7 +135,7 @@ if st.sidebar.markdown(
 ):
 
 # 조회 버튼
-if st.sidebar.button("조회"):
+# if st.sidebar.button("조회"):
     # 필터링된 데이터 세션에 저장
     st.session_state["filtered_data"] = df[
         (df['단과대'] == selected_dept) &
