@@ -16,8 +16,6 @@ st.markdown(
     """
     <meta property="og:title" content="KNU Class: PEEK">
     <meta property="og:type" content="website">
-    <!-- <meta property="og:image" content="이미지 URL을 여기에 입력"> -->
-    <meta property="og:description" content="학기별 인기있는 과목까지 한 눈에 보기!">
     """,
     unsafe_allow_html=True
 )
