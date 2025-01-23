@@ -5,7 +5,7 @@ import os
 
 # ----- Streamlit 기본 설정 -----
 st.set_page_config(
-    page_title="KNU 과목조회 도우미",
+    page_title="KNU Class Peek",
     page_icon="🎓",
     layout="centered",
     initial_sidebar_state="collapsed",
@@ -89,7 +89,7 @@ if 'filtered_data' not in st.session_state:
 df = st.session_state['df']
 
 # ----- 메인 UI 구성 -----
-st.title("KNU 과목조회 도우미🎓")
+st.title("KNU Class: PEEK🎓")
 st.markdown(
     '<p style="font-size:14px; color:gray;">학기별 인기있는 과목까지 한 눈에 보기!</p>',
     unsafe_allow_html=True
