@@ -14,7 +14,6 @@ st.set_page_config(
 # ----- 메타 태그 추가 (사이트 미리보기 이미지 설정) -----
 st.markdown(
     """
-    <meta property="og:url" content="https://the-free-coding-vbbwm6camijntki5e5xmyw.streamlit.app/">
     <meta property="og:title" content="KNU Class: PEEK">
     <meta property="og:type" content="website">
     <!-- <meta property="og:image" content="이미지 URL을 여기에 입력"> -->
