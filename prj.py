@@ -102,29 +102,41 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 단과대 선택
-if '단과대' not in df.columns:
-    st.error("'단과대' 컬럼이 없습니다.")
-    st.stop()
+# # 단과대 선택
+# if '단과대' not in df.columns:
+#     st.error("'단과대' 컬럼이 없습니다.")
+#     st.stop()
 
-dept_options = df['단과대'].unique()
-selected_dept = st.expander.selectbox("단과대학을 선택하세요", options=dept_options)
+# dept_options = df['단과대'].unique()
+# selected_dept = st.expander.selectbox("단과대학을 선택하세요", options=dept_options)
 
-# 학과 선택
-if '학과' not in df.columns:
-    st.error("'학과' 컬럼이 없습니다.")
-    st.stop()
+# # 학과 선택
+# if '학과' not in df.columns:
+#     st.error("'학과' 컬럼이 없습니다.")
+#     st.stop()
 
-dept_options2 = df[df['단과대'] == selected_dept]['학과'].unique()
-selected_dept2 = st.expander.selectbox("학과를 선택하세요", options=dept_options2)
+# dept_options2 = df[df['단과대'] == selected_dept]['학과'].unique()
+# selected_dept2 = st.expander.selectbox("학과를 선택하세요", options=dept_options2)
 
-# 학년/학기 선택
-if ('학년' not in df.columns) or ('학기' not in df.columns):
-    st.error("'학년/학기' 관련 컬럼이 없습니다.")
-    st.stop()
+# # 학년/학기 선택
+# if ('학년' not in df.columns) or ('학기' not in df.columns):
+#     st.error("'학년/학기' 관련 컬럼이 없습니다.")
+#     st.stop()
 
-semester_options = (df['학년'] + '-' + df['학기']).unique()
-selected_semester = st.expander.selectbox("학년과 학기를 선택하세요", options=semester_options)
+# semester_options = (df['학년'] + '-' + df['학기']).unique()
+# selected_semester = st.expander.selectbox("학년과 학기를 선택하세요", options=semester_options)
+
+with st.expander("메뉴"):
+    selected_dept = st.selectbox("단과대학을 선택하세요", options=dept_options)
+    selected_dept2 = st.selectbox("학과를 선택하세요", options=dept_options2)
+    selected_semester = st.selectbox("학년과 학기를 선택하세요", options=semester_options)
+
+    if st.button("조회하기"):
+        st.session_state["filtered_data"] = df[
+            (df['단과대'] == selected_dept) &
+            (df['학과'] == selected_dept2) &
+            ((df['학년'] + '-' + df['학기']) == selected_semester)
+        ]
 
 # 조회 버튼
 if st.expander.button("조회"):
