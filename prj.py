@@ -11,6 +11,18 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# ----- 메타 태그 추가 (사이트 미리보기 이미지 설정) -----
+st.markdown(
+    """
+    <meta property="og:url" content="https://the-free-coding-vbbwm6camijntki5e5xmyw.streamlit.app/">
+    <meta property="og:title" content="KNU Class: PEEK">
+    <meta property="og:type" content="website">
+    /* <meta property="og:image" content="이미지 URL을 여기에 입력"> */
+    <meta property="og:description" content="학기별 인기있는 과목까지 한 눈에 보기!">
+    """,
+    unsafe_allow_html=True
+)
+
 # ----- CSS 스타일 추가 -----
 st.markdown(
     """
