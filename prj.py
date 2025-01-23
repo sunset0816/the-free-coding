@@ -114,7 +114,8 @@ selected_dept = df['단과대'].unique()
 if '학과' not in df.columns:
     st.error("'학과' 컬럼이 없습니다.")
     st.stop()
-
+    
+selected_dept = str(selected_dept)
 dept_options2 = df[df['단과대'] == selected_dept]['학과'].unique()
 # selected_dept2 = st.expander.selectbox("학과를 선택하세요", options=dept_options2)
 
