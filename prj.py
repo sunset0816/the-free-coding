@@ -126,16 +126,8 @@ if ('학년' not in df.columns) or ('학기' not in df.columns):
 semester_options = (df['학년'] + '-' + df['학기']).unique()
 selected_semester = st.sidebar.selectbox("학년과 학기를 선택하세요", options=semester_options)
 
-##################################################
-
-# 조회 버튼을 '조회하기' 텍스트로 변경
-if st.sidebar.markdown(
-    "<a href='#' style='font-size:20px; padding: 10px; color:white; background-color:#254A94; border-radius:5px; text-decoration:none;'>조회하기</a>", 
-    unsafe_allow_html=True
-):
-
 # 조회 버튼
-# if st.sidebar.button("조회"):
+if st.sidebar.button("조회"):
     # 필터링된 데이터 세션에 저장
     st.session_state["filtered_data"] = df[
         (df['단과대'] == selected_dept) &
