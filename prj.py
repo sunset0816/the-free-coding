@@ -5,7 +5,7 @@ import os
 
 # ----- Streamlit 기본 설정 -----
 st.set_page_config(
-    page_title="KNU Class Peek",
+    page_title="KNU Class: Peek",
     page_icon="🎓",
     layout="centered",
     initial_sidebar_state="collapsed",
