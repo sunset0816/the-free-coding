@@ -89,7 +89,14 @@ if 'filtered_data' not in st.session_state:
 df = st.session_state['df']
 
 # ----- 메인 UI 구성 -----
-st.title("KNU Class: PEEK🎓")
+st.markdown(
+    """
+    <h1>
+        <span style="color:#254A94;">KNU</span> Class: PEEK🎓
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
 st.markdown(
     '<p style="font-size:14px; color:gray;">학기별 인기있는 과목까지 한 눈에 보기!</p>',
     unsafe_allow_html=True
