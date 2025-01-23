@@ -166,7 +166,7 @@ if not filtered_df.empty:
         # 좋아요가 가장 많은 과목 강조
         if most_liked_course is not None and max_likes > 0 and row.equals(most_liked_course):
             st.markdown(
-                f"🔥🔥 <span style='font-size:30px; color: #e6c55a; font-weight:bold;'>{course_name}</span>",
+                f"🔥 <span style='font-size:30px; color: #e6c55a; font-weight:bold;'>{course_name}</span>",
                 unsafe_allow_html=True
     )
         else:
