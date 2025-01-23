@@ -39,7 +39,7 @@ st.markdown(
 )
 
 # 엑셀 파일 경로
-file_path = 'merged_v3.xlsx'
+file_path = 'merged_v4.xlsx'
 
 # 엑셀에서 최초 한 번만 로드하는 함수
 def load_data():
