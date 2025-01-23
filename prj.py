@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# ----- 메타 태그 추가 (사이트 미리보기 이미지 설정) -----
+# ----- 메타 태그 추가 (사이트 미리보기 설정) -----
 st.markdown(
     """
     <meta property="og:title" content="KNU Class: PEEK">
@@ -149,7 +149,7 @@ filtered_df = st.session_state["filtered_data"]
 
 if not filtered_df.empty:
 
-    # 좋아요가 가장 많은 과목 찾기
+    # 수강희망 가장 많은 과목 찾기
     most_liked_course = None
     max_likes = -1
 
@@ -161,7 +161,7 @@ if not filtered_df.empty:
     for idx, row in filtered_df.iterrows():
         course_name = row['교과목명']
 
-        # 좋아요가 가장 많은 과목 강조
+        # 수강희망 가장 많은 과목 강조
         if most_liked_course is not None and max_likes > 0 and row.equals(most_liked_course):
             st.markdown(
                 f"🔥 <span style='font-size:30px; color: #e6c55a; font-weight:bold;'>{course_name}</span>",
@@ -181,7 +181,7 @@ if not filtered_df.empty:
 
         col1, col2 = st.columns(2)
 
-        # 좋아요 버튼
+        # 수강희망 버튼
         col1.button(
             f"💓 수강 희망해요  {row['likes']}",
             key=f"like_btn_{idx}",
@@ -189,7 +189,7 @@ if not filtered_df.empty:
             args=(idx,)  # 콜백에 인덱스 전달
         )
 
-        # 나빠요 버튼
+        # 수강 비희망 버튼
         col2.button(
             f"❌ 수강 안해요 {row['dislikes']}",
             key=f"dislike_btn_{idx}",
