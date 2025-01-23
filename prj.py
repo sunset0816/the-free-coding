@@ -108,7 +108,7 @@ if '단과대' not in df.columns:
     st.stop()
 
 dept_options = df['단과대'].unique()
-selected_dept = st.sidebar.selectbox("단과대학을 선택하세요", options=dept_options)
+selected_dept = st.expander.selectbox("단과대학을 선택하세요", options=dept_options)
 
 # 학과 선택
 if '학과' not in df.columns:
@@ -116,7 +116,7 @@ if '학과' not in df.columns:
     st.stop()
 
 dept_options2 = df[df['단과대'] == selected_dept]['학과'].unique()
-selected_dept2 = st.sidebar.selectbox("학과를 선택하세요", options=dept_options2)
+selected_dept2 = st.expander.selectbox("학과를 선택하세요", options=dept_options2)
 
 # 학년/학기 선택
 if ('학년' not in df.columns) or ('학기' not in df.columns):
@@ -124,10 +124,10 @@ if ('학년' not in df.columns) or ('학기' not in df.columns):
     st.stop()
 
 semester_options = (df['학년'] + '-' + df['학기']).unique()
-selected_semester = st.sidebar.selectbox("학년과 학기를 선택하세요", options=semester_options)
+selected_semester = st.expander.selectbox("학년과 학기를 선택하세요", options=semester_options)
 
 # 조회 버튼
-if st.sidebar.button("조회"):
+if st.expander.button("조회"):
     # 필터링된 데이터 세션에 저장
     st.session_state["filtered_data"] = df[
         (df['단과대'] == selected_dept) &
