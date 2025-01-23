@@ -107,7 +107,7 @@ if '단과대' not in df.columns:
     st.error("'단과대' 컬럼이 없습니다.")
     st.stop()
 
-dept_options = df['단과대'].unique()
+selected_dept = df['단과대'].unique()
 # selected_dept = st.expander.selectbox("단과대학을 선택하세요", options=dept_options)
 
 # 학과 선택
@@ -123,7 +123,7 @@ if ('학년' not in df.columns) or ('학기' not in df.columns):
     st.error("'학년/학기' 관련 컬럼이 없습니다.")
     st.stop()
 
-semester_options = (df['학년'] + '-' + df['학기']).unique()
+semester_semester = (df['학년'] + '-' + df['학기']).unique()
 # selected_semester = st.expander.selectbox("학년과 학기를 선택하세요", options=semester_options)
 
 with st.expander("메뉴"):
