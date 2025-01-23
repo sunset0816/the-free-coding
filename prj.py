@@ -107,46 +107,41 @@ if '단과대' not in df.columns:
     st.error("'단과대' 컬럼이 없습니다.")
     st.stop()
 
-selected_dept = df['단과대'].unique()
-# selected_dept = st.expander.selectbox("단과대학을 선택하세요", options=dept_options)
+dept_options = df['단과대'].unique()
+selected_dept = st.sidebar.selectbox("단과대학을 선택하세요", options=dept_options)
 
 # 학과 선택
 if '학과' not in df.columns:
     st.error("'학과' 컬럼이 없습니다.")
     st.stop()
-    
-selected_dept = str(selected_dept)
+
 dept_options2 = df[df['단과대'] == selected_dept]['학과'].unique()
-# selected_dept2 = st.expander.selectbox("학과를 선택하세요", options=dept_options2)
+selected_dept2 = st.sidebar.selectbox("학과를 선택하세요", options=dept_options2)
 
 # 학년/학기 선택
 if ('학년' not in df.columns) or ('학기' not in df.columns):
     st.error("'학년/학기' 관련 컬럼이 없습니다.")
     st.stop()
 
-semester_semester = (df['학년'] + '-' + df['학기']).unique()
-# selected_semester = st.expander.selectbox("학년과 학기를 선택하세요", options=semester_options)
+semester_options = (df['학년'] + '-' + df['학기']).unique()
+selected_semester = st.sidebar.selectbox("학년과 학기를 선택하세요", options=semester_options)
 
-with st.expander("메뉴"):
-    selected_dept = st.selectbox("단과대학을 선택하세요", options=dept_options)
-    selected_dept2 = st.selectbox("학과를 선택하세요", options=dept_options2)
-    selected_semester = st.selectbox("학년과 학기를 선택하세요", options=semester_options)
+##################################################
 
-    if st.button("조회"):
-        st.session_state["filtered_data"] = df[
-            (df['단과대'] == selected_dept) &
-            (df['학과'] == selected_dept2) &
-            ((df['학년'] + '-' + df['학기']) == selected_semester)
-        ]
+# 조회 버튼을 '조회하기' 텍스트로 변경
+if st.sidebar.markdown(
+    "<a href='#' style='font-size:20px; padding: 10px; color:white; background-color:#254A94; border-radius:5px; text-decoration:none;'>조회하기</a>", 
+    unsafe_allow_html=True
+):
 
 # 조회 버튼
-# if st.expander.button("조회"):
-#     # 필터링된 데이터 세션에 저장
-#     st.session_state["filtered_data"] = df[
-#         (df['단과대'] == selected_dept) &
-#         (df['학과'] == selected_dept2) &
-#         ((df['학년'] + '-' + df['학기']) == selected_semester)
-#     ]
+if st.sidebar.button("조회"):
+    # 필터링된 데이터 세션에 저장
+    st.session_state["filtered_data"] = df[
+        (df['단과대'] == selected_dept) &
+        (df['학과'] == selected_dept2) &
+        ((df['학년'] + '-' + df['학기']) == selected_semester)
+    ]
 
 # ----- 조회 결과 화면 -----
 filtered_df = st.session_state["filtered_data"]
