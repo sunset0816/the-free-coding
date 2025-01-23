@@ -33,19 +33,6 @@ st.markdown(
     .stDivider {
         margin: 1rem 1; /* 구분선 여백 조정 */
     }
-    
-    /* 사이드바 열림 상태의 기본 아이콘 스타일 */
-    [data-testid="stSidebarCollapseButton"] svg {
-        width: 40px; /* 기본 크기 */
-        height: 40px;
-        color: blue; /* 열렸을 때 색상 */
-    }
-    /* 사이드바 닫힘 상태의 아이콘 스타일 */
-    [data-testid="stSidebarCollapsedControl"] svg {
-        width: 50px; /* 닫혔을 때 크기 */
-        height: 50px;
-        color: red; /* 닫혔을 때 색상 */
-    }
     </style>
     """,
     unsafe_allow_html=True
@@ -124,41 +111,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 직접 HTML로 사이드바 구현 (대체 부분)
-st.markdown(
-    """
-    <div style="display: flex; flex-direction: column; width: 200px; padding: 20px; background-color: #f4f4f9;">
-        <label for="dept_select">단과대학을 선택하세요:</label>
-        <select id="dept_select">
-            <!-- dept_options 값을 넣는 부분 -->
-            {% for dept in dept_options %}
-                <option value="{{ dept }}">{{ dept }}</option>
-            {% endfor %}
-        </select>
-
-        <label for="dept2_select">학과를 선택하세요:</label>
-        <select id="dept2_select">
-            <!-- 학과 선택 목록을 넣는 부분 -->
-        </select>
-
-        <label for="semester_select">학년과 학기를 선택하세요:</label>
-        <select id="semester_select">
-            <!-- 학년-학기 목록을 넣는 부분 -->
-        </select>
-
-        <button id="filter_button">조회</button>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
 # 단과대 선택
 if '단과대' not in df.columns:
     st.error("'단과대' 컬럼이 없습니다.")
     st.stop()
 
 dept_options = df['단과대'].unique()
-selected_dept = st.selectbox("단과대학을 선택하세요", options=dept_options)
+selected_dept = st.sidebar.selectbox("단과대학을 선택하세요", options=dept_options)
 
 # 학과 선택
 if '학과' not in df.columns:
@@ -166,7 +125,7 @@ if '학과' not in df.columns:
     st.stop()
 
 dept_options2 = df[df['단과대'] == selected_dept]['학과'].unique()
-selected_dept2 = st.selectbox("학과를 선택하세요", options=dept_options2)
+selected_dept2 = st.sidebar.selectbox("학과를 선택하세요", options=dept_options2)
 
 # 학년/학기 선택
 if ('학년' not in df.columns) or ('학기' not in df.columns):
@@ -174,77 +133,16 @@ if ('학년' not in df.columns) or ('학기' not in df.columns):
     st.stop()
 
 semester_options = (df['학년'] + '-' + df['학기']).unique()
-selected_semester = st.selectbox("학년과 학기를 선택하세요", options=semester_options)
+selected_semester = st.sidebar.selectbox("학년과 학기를 선택하세요", options=semester_options)
 
 # 조회 버튼
-if st.button("조회"):
+if st.sidebar.button("조회"):
     # 필터링된 데이터 세션에 저장
     st.session_state["filtered_data"] = df[
         (df['단과대'] == selected_dept) &
         (df['학과'] == selected_dept2) &
         ((df['학년'] + '-' + df['학기']) == selected_semester)
     ]
-
-# # 단과대 선택
-# if '단과대' not in df.columns:
-#     st.error("'단과대' 컬럼이 없습니다.")
-#     st.stop()
-
-# dept_options = df['단과대'].unique()
-# # selected_dept = st.sidebar.selectbox("단과대학을 선택하세요", options=dept_options)
-
-# # 학과 선택
-# if '학과' not in df.columns:
-#     st.error("'학과' 컬럼이 없습니다.")
-#     st.stop()
-
-# dept_options2 = df[df['단과대'] == selected_dept]['학과'].unique()
-# # selected_dept2 = st.sidebar.selectbox("학과를 선택하세요", options=dept_options2)
-
-# # 학년/학기 선택
-# if ('학년' not in df.columns) or ('학기' not in df.columns):
-#     st.error("'학년/학기' 관련 컬럼이 없습니다.")
-#     st.stop()
-
-# semester_options = (df['학년'] + '-' + df['학기']).unique()
-# # selected_semester = st.sidebar.selectbox("학년과 학기를 선택하세요", options=semester_options)
-
-# ########################################################################
-
-# # 직접 HTML로 사이드바 구현 (대체 부분)
-# st.markdown(
-#     """
-#     <div style="display: flex; flex-direction: column; width: 200px; padding: 20px; background-color: #f4f4f9;">
-#         <label for="dept_select">단과대학을 선택하세요:</label>
-#         <select id="dept_select">
-#             <!-- 여기서 dept_options을 선택 목록으로 추가할 수 있습니다 -->
-#             <!-- 예시로는 단과대 배열을 반복문으로 추가 -->
-#         </select>
-
-#         <label for="dept2_select">학과를 선택하세요:</label>
-#         <select id="dept2_select">
-#             <!-- 학과 선택 목록을 추가 -->
-#         </select>
-
-#         <label for="semester_select">학년과 학기를 선택하세요:</label>
-#         <select id="semester_select">
-#             <!-- 학년-학기 목록을 추가 -->
-#         </select>
-
-#         <button id="filter_button">조회</button>
-#     </div>
-#     """,
-#     unsafe_allow_html=True
-# )
-
-# # 조회 버튼
-# if st.sidebar.button("조회"):
-#     # 필터링된 데이터 세션에 저장
-#     st.session_state["filtered_data"] = df[
-#         (df['단과대'] == selected_dept) &
-#         (df['학과'] == selected_dept2) &
-#         ((df['학년'] + '-' + df['학기']) == selected_semester)
-#     ]
 
 # ----- 조회 결과 화면 -----
 filtered_df = st.session_state["filtered_data"]
