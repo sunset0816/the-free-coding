@@ -9,6 +9,7 @@ st.set_page_config(
     page_icon="🎓",
     layout="centered",
     initial_sidebar_state="collapsed",
+    initial_sidebar_state="expanded",
 )
 
 # ----- 메타 태그 추가 (사이트 미리보기 설정) -----
