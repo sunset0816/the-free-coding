@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-#import openpyxl
+import openpyxl
 import os
 
 # ----- Streamlit 기본 설정 -----
