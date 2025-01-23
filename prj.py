@@ -131,7 +131,7 @@ with st.expander("메뉴"):
     selected_dept2 = st.selectbox("학과를 선택하세요", options=dept_options2)
     selected_semester = st.selectbox("학년과 학기를 선택하세요", options=semester_options)
 
-    if st.button("조회하기"):
+    if st.button("조회"):
         st.session_state["filtered_data"] = df[
             (df['단과대'] == selected_dept) &
             (df['학과'] == selected_dept2) &
@@ -139,13 +139,13 @@ with st.expander("메뉴"):
         ]
 
 # 조회 버튼
-if st.expander.button("조회"):
-    # 필터링된 데이터 세션에 저장
-    st.session_state["filtered_data"] = df[
-        (df['단과대'] == selected_dept) &
-        (df['학과'] == selected_dept2) &
-        ((df['학년'] + '-' + df['학기']) == selected_semester)
-    ]
+# if st.expander.button("조회"):
+#     # 필터링된 데이터 세션에 저장
+#     st.session_state["filtered_data"] = df[
+#         (df['단과대'] == selected_dept) &
+#         (df['학과'] == selected_dept2) &
+#         ((df['학년'] + '-' + df['학기']) == selected_semester)
+#     ]
 
 # ----- 조회 결과 화면 -----
 filtered_df = st.session_state["filtered_data"]
