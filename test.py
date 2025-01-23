@@ -29,7 +29,7 @@ def save_data(data, filepath):
         j.dump(data, file, ensure_ascii=False, indent=4)
 
 # JSON 데이터 불러오기
-data_directory = "C:\\Users\\noul0\\OneDrive\\바탕 화면\\코딩뒷풀이\\json_files"  # JSON 파일이 있는 디렉토리 경로
+data_directory = "the-free-coding/json_files"  # JSON 파일이 있는 디렉토리 경로
 data = load_all_courses(data_directory)
 
 # 단과대학과 학과 데이터
